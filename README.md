@@ -13,11 +13,11 @@ pip install requirements.txt
 Below are the few code snippets:
 ```python
 # There are 20 available exchange rates: Below are the first five for references:
-us_dollar = exchange.rate().usDollar()
-euro = exchange.rate().euro()
-pound = exchange.rate().poundSterling()
-australian_dollar = exchange.rate().australianDollar()
-swiss_frank = exchange.rate().swissFrank()
+us_dollar = exchange_rate().usDollar()
+euro = exchange_rate().euro()
+pound = exchange_rate().poundSterling()
+australian_dollar = exchange_rate().australianDollar()
+swiss_frank = exchange_rate().swissFrank()
 
 # Run the script by typing the command below from terminal
 python main_exchange_rate.py
