@@ -7,7 +7,7 @@ pip install requirements.txt
 
 # Usage:
 To use the script, simply run the following command:
-````python
+```python
 python main_exchange_rate.py
 ```
 The script will print the latest currency exchange rates to the console.
