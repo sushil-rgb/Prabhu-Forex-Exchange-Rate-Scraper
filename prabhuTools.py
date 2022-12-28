@@ -10,6 +10,7 @@ def userAgents():
 
 class PrabhuForex:
     def __init__(self, play):
+        print(f"Initiating the automation. Powered by Playwright.")
         prabhuUrl = "https://www.prabhubank.com/forex"
         self.browser = play.chromium.launch(headless=True, slow_mo=1*1000)
         self.page = self.browser.new_page(user_agent=userAgents())        
