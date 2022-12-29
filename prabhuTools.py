@@ -23,11 +23,11 @@ class PrabhuForex:
             # Below index is the number of column available in the forex table:
             self.exchange_rate = [currency.find_all('td')[2].text.strip() for currency in self.soup.find('tbody', id='table_body').find_all('tr')]
                                                         # Default value is 2:> Buying(Notes of below Deno 50)
-                                                        # 0: selects Currency,
-                                                        # 1 :> Unit,
+                                                        # 0: Currency,
+                                                        # 1: Unit,
                                                         # 2: Buying(Notes of below Deno 50),
-                                                        # 3:> Buying(Notes of Deno 50 and above),
-                                                        # 4:>(Selling/Rs),   
+                                                        # 3: Buying(Notes of Deno 50 and above),
+                                                        # 4: Selling/Rs,   
                                                         # Selecting below 0 and beyond 4 will throw an error.                                                     
         except Exception as e:
             print(f"Oops! Content loading error. Please try again in few minutes | {e}")
