@@ -8,6 +8,6 @@ def exchange_rate():
         return rate
 
 
-currency_exchange_rate = exchange_rate().usDollar() * 1.07
+currency_exchange_rate = exchange_rate().usDollar() 
 
 print(currency_exchange_rate)
