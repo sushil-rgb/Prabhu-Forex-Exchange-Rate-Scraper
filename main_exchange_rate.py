@@ -7,6 +7,6 @@ def exchange_rate():
         rate = PrabhuForex(p)
         return rate
 
-us_dollar = exchange_rate().singaporeDollar()
+currency_exchange_rate = exchange_rate().usDollar()
 
-print(f"The latest exchange rate | Rs.{us_dollar}.")
+print(f"The latest exchange rate | Rs.{currency_exchange_rate}.")
