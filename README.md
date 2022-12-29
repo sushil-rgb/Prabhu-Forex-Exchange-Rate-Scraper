@@ -24,7 +24,7 @@ python main_exchange_rate.py
 ```
 The script will print the latest currency exchange rates to the console.
 
-# Customzation:
+# Customization:
 You can choose the available exchange rate available in PrabhuForex class in prabhuTools.py
 
 # Disclaimer:
