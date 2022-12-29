@@ -1,5 +1,6 @@
 import random
 from bs4 import BeautifulSoup
+from lxml import etree
 
 
 def userAgents():
@@ -13,16 +14,29 @@ class PrabhuForex:
         print(f"Initiating the automation. Powered by Playwright.")
         prabhuUrl = "https://www.prabhubank.com/forex"
         self.browser = play.chromium.launch(headless=True, slow_mo=1*1000)
-        self.page = self.browser.new_page(user_agent=userAgents())        
+        self.page = self.browser.new_page(user_agent=userAgents())    
+        self.page.goto(prabhuUrl)
+        self.page.wait_for_url(prabhuUrl, timeout=30*100) 
         try:
-            self.page.goto(prabhuUrl)
-            self.page.wait_for_url(prabhuUrl, timeout=30*100)
-
             content = self.page.content()
-            soup = BeautifulSoup(content, 'lxml')
-            self.exchange_rate = [currency.find_all('td')[2].text.strip() for currency in soup.find('tbody', id='table_body').find_all('tr')]        
+            self.soup = BeautifulSoup(content, 'lxml')
+            # Below index is the number of column available in the forex table:
+            self.exchange_rate = [currency.find_all('td')[2].text.strip() for currency in self.soup.find('tbody', id='table_body').find_all('tr')]
+                                                        # Default value is 2:> Buying(Notes of below Deno 50)
+                                                        # 0: selects Currency, 1 :> Unit,
+                                                        # 2: Buying(Notes of below Deno 50),
+                                                        # 3:> Buying(Notes of Deno 50 and above),
+                                                        # 4:>(Selling/Rs)   
+                                                        # Selecting below 0 and beyond 4 will throw an error.                                                     
         except Exception as e:
             print(f"Oops! Content loading error. Please try again in few minutes | {e}")
+        self.browser.close()
+
+    def latest_date(self):
+        # Using lxml to select xpath selectors via beautifulsoup
+        dom = etree.HTML(str(self.soup))
+        date = ''.join([d.get('value') for d in dom.xpath("//input[@name='forexFilter']")])        
+        return date
     
     def usDollar(self):
         usDollarValue = self.exchange_rate[0]
